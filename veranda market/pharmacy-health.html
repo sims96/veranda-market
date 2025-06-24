@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pharmacy & Health - Veranda Market">
+    <title>Pharmacy & Health - Find Trusted Pharmacies | Veranda Market</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Main Site CSS (for header) -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Pharmacy Page CSS -->
+    <link rel="stylesheet" href="css/pharmacy-health.css">
+</head>
+<body>
+    <!-- Top Navigation from Main Site -->
+    <header class="header" id="header">
+        <nav class="top-nav">
+            <div class="container">
+                <div class="top-nav-wrapper">
+                    <!-- Brand -->
+                    <div class="brand">
+                        <a href="/" class="logo-container">
+                            <div class="logo">
+                                <img src="assets/images/icon.png" alt="Veranda Market Logo">
+                            </div>
+                            <div class="brand-text">
+                                <h1>
+                                    <span class="brand-v">Veranda</span>
+                                    <span class="brand-m">Market</span>
+                                </h1>
+                                <p class="slogan">Shop from your veranda</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Search Bar -->
+                    <div class="search-container">
+                        <div class="search-wrapper">
+                            <div class="search-category-dropdown">
+                                <select id="searchCategory">
+                                    <option value="medicines">Medicines</option>
+                                    <option value="pharmacies">Pharmacies</option>
+                                    <option value="health-products">Health Products</option>
+                                </select>
+                                <i class="fas fa-chevron-down dropdown-indicator"></i>
+                            </div>
+                            <div class="search-input-wrapper">
+                                <input type="text" class="search-input" placeholder="Search for medicines or pharmacies...">
+                                <button class="voice-search-btn" title="Voice search">
+                                    <i class="fas fa-microphone"></i>
+                                </button>
+                            </div>
+                            <button class="search-btn">
+                                <i class="fas fa-search"></i>
+                                <span class="search-btn-text">Search</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- User Actions -->
+                    <div class="user-actions">
+                        <div class="deliver-to">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="deliver-text">
+                                <span class="deliver-label">Deliver to</span>
+                                <span class="deliver-location" id="deliverLocation">Select Location</span>
+                            </div>
+                        </div>
+                        <div class="cart-container">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </div>
+                        <div class="user-account">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pharmacy-hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    Certified Pharmacies Only
+                </div>
+                <h1 class="hero-title">Your Health, Delivered Safely</h1>
+                <p class="hero-description">
+                    Connect with licensed pharmacies for genuine medicines. 
+                    Get professional advice and doorstep delivery across Cameroon.
+                </p>
+                <div class="hero-features">
+                    <div class="hero-feature">
+                        <i class="fas fa-certificate"></i>
+                        <span>Licensed Pharmacies</span>
+                    </div>
+                    <div class="hero-feature">
+                        <i class="fas fa-clock"></i>
+                        <span>24/7 Emergency</span>
+                    </div>
+                    <div class="hero-feature">
+                        <i class="fas fa-truck"></i>
+                        <span>Fast Delivery</span>
+                    </div>
+                </div>
+                <a href="#pharmacies" class="hero-cta">
+                    <span>Find Pharmacies Near You</span>
+                    <i class="fas fa-arrow-down"></i>
+                </a>
+            </div>
+            <!-- Hero pattern overlay -->
+            <div class="hero-pattern"></div>
+            <!-- Medical icons floating -->
+            <div class="floating-medical-icons">
+                <i class="fas fa-pills"></i>
+                <i class="fas fa-heartbeat"></i>
+                <i class="fas fa-stethoscope"></i>
+                <i class="fas fa-first-aid"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Banner -->
+    <div class="emergency-banner">
+        <div class="container">
+            <div class="emergency-content">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span class="emergency-text">Need emergency medicines?</span>
+                <button class="emergency-btn">
+                    <i class="fas fa-phone-alt"></i>
+                    Call Emergency Pharmacy
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Open Pharmacy Button -->
+    <button class="floating-pharmacy-btn" id="floatingOpenPharmacy">
+        <div class="floating-btn-content">
+            <i class="fas fa-store-alt"></i>
+            <span class="floating-btn-text">Open Your Pharmacy</span>
+        </div>
+        <div class="floating-btn-badge">FREE</div>
+    </button>
+
+    <!-- Pharmacies Listing Section -->
+    <section class="pharmacies-listing" id="pharmacies">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="section-header">
+                <h2 class="section-title">Trusted Pharmacies Near You</h2>
+                <div class="filter-controls">
+                    <div class="quick-filters">
+                        <button class="quick-filter active" data-filter="all">All</button>
+                        <button class="quick-filter" data-filter="24h">24/7 Open</button>
+                        <button class="quick-filter" data-filter="delivery">Home Delivery</button>
+                        <button class="quick-filter" data-filter="emergency">Emergency Services</button>
+                    </div>
+                    <div class="sort-dropdown">
+                        <select id="sortPharmacies">
+                            <option value="nearest">Nearest First</option>
+                            <option value="rating">Highest Rated</option>
+                            <option value="availability">Open Now</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filters Sidebar -->
+            <div class="pharmacies-content">
+                <aside class="filters-sidebar">
+                    <h3 class="filter-title">Filter Pharmacies</h3>
+                    
+                    <!-- Location Range -->
+                    <div class="filter-group">
+                        <h4 class="filter-group-title">Distance</h4>
+                        <div class="distance-slider">
+                            <input type="range" min="1" max="20" value="5" id="distanceRange">
+                            <div class="distance-display">Within <span id="distanceValue">5</span> km</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Services Filter -->
+                    <div class="filter-group">
+                        <h4 class="filter-group-title">Services</h4>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" id="prescriptionService">
+                            <span class="checkbox-custom"></span>
+                            <span class="filter-label">
+                                <i class="fas fa-file-prescription"></i> Prescription Medicines
+                            </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" id="consultationService">
+                            <span class="checkbox-custom"></span>
+                            <span class="filter-label">
+                                <i class="fas fa-user-md"></i> Pharmacist Consultation
+                            </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" id="vaccineService">
+                            <span class="checkbox-custom"></span>
+                            <span class="filter-label">
+                                <i class="fas fa-syringe"></i> Vaccination Services
+                            </span>
+                        </label>
+                    </div>
+
+                    <!-- Payment Methods -->
+                    <div class="filter-group">
+                        <h4 class="filter-group-title">Payment Accepted</h4>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" id="orangeMoneyPayment">
+                            <span class="checkbox-custom"></span>
+                            <span class="filter-label">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Logo_Orange.svg/20px-Logo_Orange.svg.png" alt="OM" class="filter-payment-icon">
+                                Orange Money
+                            </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" id="mobileMoneyPayment">
+                            <span class="checkbox-custom"></span>
+                            <span class="filter-label">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/MTN_Logo.svg/20px-MTN_Logo.svg.png" alt="MTN" class="filter-payment-icon">
+                                Mobile Money
+                            </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" id="insurancePayment">
+                            <span class="checkbox-custom"></span>
+                            <span class="filter-label">Health Insurance</span>
+                        </label>
+                    </div>
+                </aside>
+
+                <!-- Pharmacies Grid -->
+                <div class="pharmacies-grid">
+                    <!-- Pharmacy Card 1 -->
+                    <div class="pharmacy-card">
+                        <div class="pharmacy-left">
+                            <div class="pharmacy-image">
+                                <img src="https://images.unsplash.com/photo-1576602976047-174e57a47881?w=400&h=300&fit=crop" alt="Central Pharmacy">
+                                <div class="pharmacy-status open">
+                                    <i class="fas fa-clock"></i> Open Now
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="pharmacy-right">
+                            <div class="pharmacy-header">
+                                <div class="pharmacy-identity">
+                                    <div class="pharmacy-logo glow-green">
+                                        <i class="fas fa-plus" style="font-size: 1.5rem; color: #16a085;"></i>
+                                    </div>
+                                    <h3 class="pharmacy-name">Central Pharmacy Douala</h3>
+                                </div>
+                                <div class="pharmacy-badges">
+                                    <span class="verified-badge">
+                                        <i class="fas fa-check-circle"></i> Licensed
+                                    </span>
+                                    <span class="rating-badge">
+                                        <i class="fas fa-star"></i> 4.8
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="pharmacy-info">
+                                <div class="info-row">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Bonapriso, Douala - 1.2 km away</span>
+                                </div>
+                                <div class="info-row">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Open 24/7 • Emergency services available</span>
+                                </div>
+                                <div class="info-row">
+                                    <i class="fas fa-truck"></i>
+                                    <span>Free delivery above 5,000 FCFA</span>
+                                </div>
+                            </div>
+                            
+                            <div class="pharmacy-features">
+                                <span class="feature-tag">
+                                    <i class="fas fa-pills"></i> All Medicines
+                                </span>
+                                <span class="feature-tag">
+                                    <i class="fas fa-baby"></i> Baby Care
+                                </span>
+                                <span class="feature-tag">
+                                    <i class="fas fa-heartbeat"></i> Health Check
+                                </span>
+                                <span class="feature-tag payment">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Logo_Orange.svg/100px-Logo_Orange.svg.png" alt="OM" class="payment-icon">
+                                    Orange Money
+                                </span>
+                                <span class="feature-tag payment">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/MTN_Logo.svg/100px-MTN_Logo.svg.png" alt="MTN" class="payment-icon">
+                                    Mobile Money
+                                </span>
+                            </div>
+                            
+                            <div class="pharmacy-gallery">
+                                <div class="gallery-item">
+                                    <img src="https://images.unsplash.com/photo-1585435557343-3b092031a831?w=100&h=100&fit=crop" alt="Interior">
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="https://images.unsplash.com/photo-1563213126-a4273aed2016?w=100&h=100&fit=crop" alt="Medicines">
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=100&h=100&fit=crop" alt="Counter">
+                                </div>
+                                <div class="gallery-item more">
+                                    <span>+3</span>
+                                </div>
+                            </div>
+                            
+                            <div class="pharmacy-actions">
+                                <button class="action-btn primary">
+                                    <i class="fas fa-phone-alt"></i>
+                                    Call Now
+                                </button>
+                                <button class="action-btn secondary">
+                                    <i class="fas fa-directions"></i>
+                                    Get Directions
+                                </button>
+                                <a href="#" class="action-btn tertiary">
+                                    <i class="fas fa-store"></i>
+                                    Visit Store
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pharmacy Card 2 -->
+                    <div class="pharmacy-card">
+                        <div class="pharmacy-left">
+                            <div class="pharmacy-image">
+                                <img src="https://images.unsplash.com/photo-1586015555751-63bb77f4322a?w=400&h=300&fit=crop" alt="Pharmacie St. Martin">
+                                <div class="pharmacy-status open">
+                                    <i class="fas fa-clock"></i> Open Now
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="pharmacy-right">
+                            <div class="pharmacy-header">
+                                <div class="pharmacy-identity">
+                                    <div class="pharmacy-logo glow-green" style="background: #e8f5e9;">
+                                        <i class="fas fa-plus" style="font-size: 1.5rem; color: #1a8917;"></i>
+                                    </div>
+                                    <h3 class="pharmacy-name">Pharmacie Saint Martin</h3>
+                                </div>
+                                <div class="pharmacy-badges">
+                                    <span class="verified-badge">
+                                        <i class="fas fa-check-circle"></i> Licensed
+                                    </span>
+                                    <span class="rating-badge">
+                                        <i class="fas fa-star"></i> 4.6
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="pharmacy-info">
+                                <div class="info-row">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Bastos, Yaoundé - 2.5 km away</span>
+                                </div>
+                                <div class="info-row">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Mon-Sat: 8AM-9PM, Sun: 9AM-7PM</span>
+                                </div>
+                                <div class="info-row">
+                                    <i class="fas fa-certificate"></i>
+                                    <span>Insurance accepted • Prescriptions filled</span>
+                                </div>
+                            </div>
+                            
+                            <div class="pharmacy-features">
+                                <span class="feature-tag">
+                                    <i class="fas fa-prescription"></i> Prescription
+                                </span>
+                                <span class="feature-tag">
+                                    <i class="fas fa-stethoscope"></i> Consultation
+                                </span>
+                                <span class="feature-tag">
+                                    <i class="fas fa-dna"></i> Lab Tests
+                                </span>
+                                <span class="feature-tag payment">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/MTN_Logo.svg/100px-MTN_Logo.svg.png" alt="MTN" class="payment-icon">
+                                    Mobile Money
+                                </span>
+                                <span class="feature-tag">
+                                    <i class="fas fa-credit-card"></i> Card Payment
+                                </span>
+                            </div>
+                            
+                            <div class="pharmacy-gallery">
+                                <div class="gallery-item">
+                                    <img src="https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=100&h=100&fit=crop" alt="Pharmacy">
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=100&h=100&fit=crop" alt="Medicine shelf">
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=100&h=100&fit=crop" alt="Staff">
+                                </div>
+                            </div>
+                            
+                            <div class="pharmacy-actions">
+                                <button class="action-btn primary">
+                                    <i class="fas fa-phone-alt"></i>
+                                    Call Now
+                                </button>
+                                <button class="action-btn secondary">
+                                    <i class="fas fa-directions"></i>
+                                    Get Directions
+                                </button>
+                                <a href="#" class="action-btn tertiary">
+                                    <i class="fas fa-store"></i>
+                                    Visit Store
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pharmacy Card 3 -->
+                    <div class="pharmacy-card">
+                        <div class="pharmacy-left">
+                            <div class="pharmacy-image">
+                                <img src="https://images.unsplash.com/photo-1603987492201-4c012450459e?w=400&h=300&fit=crop" alt="Community Pharmacy">
+                                <div class="pharmacy-status closed">
+                                    <i class="fas fa-clock"></i> Closed
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="pharmacy-right">
+                            <div class="pharmacy-header">
+                                <div class="pharmacy-identity">
+                                    <div class="pharmacy-logo glow-orange" style="background: #fff3e0;">
+                                        <i class="fas fa-plus" style="font-size: 1.5rem; color: #ff6f00;"></i>
+                                    </div>
+                                    <h3 class="pharmacy-name">Community Health Pharmacy</h3>
+                                </div>
+                                <div class="pharmacy-badges">
+                                    <span class="verified-badge">
+                                        <i class="fas fa-check-circle"></i> Licensed
+                                    </span>
+                                    <span class="rating-badge">
+                                        <i class="fas fa-star"></i> 4.7
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="pharmacy-info">
+                                <div class="info-row">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Molyko, Buea - 0.8 km away</span>
+                                </div>
+                                <div class="info-row">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Opens at 8:00 AM • Emergency on-call</span>
+                                </div>
+                                <div class="info-row">
+                                    <i class="fas fa-hand-holding-heart"></i>
+                                    <span>Community discounts • Student friendly</span>
+                                </div>
+                            </div>
+                            
+                            <div class="pharmacy-features">
+                                <span class="feature-tag">
+                                    <i class="fas fa-user-graduate"></i> Student Discount
+                                </span>
+                                <span class="feature-tag">
+                                    <i class="fas fa-leaf"></i> Herbal Medicine
+                                </span>
+                                <span class="feature-tag payment">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Logo_Orange.svg/100px-Logo_Orange.svg.png" alt="OM" class="payment-icon">
+                                    Orange Money
+                                </span>
+                                <span class="feature-tag payment">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/MTN_Logo.svg/100px-MTN_Logo.svg.png" alt="MTN" class="payment-icon">
+                                    Mobile Money
+                                </span>
+                            </div>
+                            
+                            <div class="pharmacy-gallery">
+                                <div class="gallery-item">
+                                    <img src="https://images.unsplash.com/photo-1559045836-623a2de998ed?w=100&h=100&fit=crop" alt="Store front">
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=100&h=100&fit=crop" alt="Medicine">
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="https://images.unsplash.com/photo-1563233269-7e86880558a7?w=100&h=100&fit=crop" alt="Consultation">
+                                </div>
+                                <div class="gallery-item more">
+                                    <span>+2</span>
+                                </div>
+                            </div>
+                            
+                            <div class="pharmacy-actions">
+                                <button class="action-btn primary">
+                                    <i class="fas fa-phone-alt"></i>
+                                    Call Now
+                                </button>
+                                <button class="action-btn secondary">
+                                    <i class="fas fa-directions"></i>
+                                    Get Directions
+                                </button>
+                                <a href="#" class="action-btn tertiary">
+                                    <i class="fas fa-store"></i>
+                                    Visit Store
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More -->
+            <div class="load-more-container">
+                <button class="load-more-btn">
+                    <span>Load More Pharmacies</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Health Tips Section -->
+    <section class="health-tips">
+        <div class="container">
+            <h3 class="tips-title">Health Tips & Information</h3>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <i class="fas fa-shield-virus"></i>
+                    <h4>Stay Protected</h4>
+                    <p>Always verify pharmacy licenses before purchasing medicines online.</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-pills"></i>
+                    <h4>Medicine Safety</h4>
+                    <p>Check expiry dates and store medicines as per instructions.</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-user-md"></i>
+                    <h4>Consult First</h4>
+                    <p>Always consult a pharmacist or doctor before taking new medicines.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (simplified) -->
+    <footer class="pharmacy-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Veranda Market. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">About</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Privacy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/pharmacy-health.js"></script>
+</body>
+</html>
